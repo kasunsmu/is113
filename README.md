@@ -2,7 +2,7 @@
 
 ## todo
 
-- [ ] Put the db-string and session-secret to .env file
+- [x] Put the db-string and session-secret to .env file
 
 
 ## Topics
