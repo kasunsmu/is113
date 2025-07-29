@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 const session = require('express-session');
+const User = require('./models/User');
 
 const app = express();
 
@@ -45,7 +46,8 @@ app.post('/register', async (req, res) => {
     try {
         const user = new User({
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
+            role: req.body.role
         });
         await user.save();
         res.redirect('/login');
