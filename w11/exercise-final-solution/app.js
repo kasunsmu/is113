@@ -48,7 +48,8 @@ app.post('/register', async (req, res) => {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
         const user = new User({
             username: req.body.username,
-            password: hashedPassword
+            password: hashedPassword,
+            role: req.body.role
         });
         await user.save();
         res.redirect('/login');
@@ -76,10 +77,15 @@ app.post('/login', async (req, res) => {
 
         req.session.user = {
             id: user._id,
-            username: user.username
+            username: user.username,
+            role: user.role
         };
+        if (user.role === "Admin") {
+            return res.redirect('/admin_profile');
+        }
 
         res.redirect('/profile');
+
     } catch (err) {
         console.error(err);
         res.redirect('/login');
@@ -91,6 +97,16 @@ app.get('/profile', (req, res) => {
         return res.redirect('/login');
     }
     res.render('profile', { user: req.session.user });
+});
+
+app.get('/admin_profile', (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+    if (!req.session.user.role === "Admin") {
+        return res.redirect('/profile');
+    }
+    res.render('admin_profile', { user: req.session.user });
 });
 
 app.get('/logout', (req, res) => {

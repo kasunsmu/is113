@@ -79,7 +79,12 @@ app.post('/login', async (req, res) => {
             role: user.role
         };
 
+        if (user.role === "Admin") {
+            return res.redirect('/admin_profile');
+        }
+
         res.redirect('/profile');
+
     } catch (err) {
         console.error(err);
         res.redirect('/login');
@@ -87,11 +92,26 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
-    res.send('NOT IMPLEMENTED');
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+    res.render('profile', { user: req.session.user });
+});
+
+app.get('/admin_profile', (req, res) => {
+    if (!req.session.user) {
+        return res.redirect('/login');
+    }
+    if (!req.session.user.role === "Admin") {
+        return res.redirect('/profile');
+    }
+    res.render('admin_profile', { user: req.session.user });
 });
 
 app.get('/logout', (req, res) => {
-    res.send('NOT IMPLEMENTED');
+    req.session.destroy(() => {
+        res.redirect('/login');
+    });
 });
 
 app.listen(8000, () => console.log('Server running on http://localhost:8000'));

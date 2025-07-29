@@ -75,7 +75,8 @@ app.post('/login', async (req, res) => {
 
         req.session.user = {
             id: user._id,
-            username: user.username
+            username: user.username,
+            role: user.role
         };
 
         res.redirect('/profile');
