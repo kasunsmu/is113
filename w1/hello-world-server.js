@@ -8,6 +8,7 @@ const server = http.createServer((req, res) => {
 
  // Send the "Hello, World!" message to the browser
  res.end('<h1>Hello, WAD1!</h1>');
+ res.end('<h1>Hello, SMU!</h1>');
 });
 
 // The server listens on the defined port
