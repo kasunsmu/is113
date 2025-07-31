@@ -57,6 +57,10 @@ app.get('/profile', (req, res) => {
     res.send('NOT IMPLEMENTED');
 });
 
+app.get('/admin_profile', (req, res) => {
+    res.send('NOT IMPLEMENTED');
+});
+
 app.get('/logout', (req, res) => {
     res.send('NOT IMPLEMENTED');
 });

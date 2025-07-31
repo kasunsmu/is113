@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const session = require('express-session');
 const User = require('./models/User');
+const session = require('express-session');
+
 
 const app = express();
 
@@ -30,7 +31,7 @@ app.use(session({
 
 // Routes
 app.get('/', (req, res) => {
-    res.send('NOT IMPLEMENTED');
+    res.redirect('/login');
 });
 
 app.get('/stats', (req, res) => {

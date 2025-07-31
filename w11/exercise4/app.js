@@ -80,6 +80,7 @@ app.post('/login', async (req, res) => {
         };
 
         res.redirect('/profile');
+        
     } catch (err) {
         console.error(err);
         res.redirect('/login');
@@ -87,6 +88,10 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
+    res.send('NOT IMPLEMENTED');
+});
+
+app.get('/admin_profile', (req, res) => {
     res.send('NOT IMPLEMENTED');
 });
 

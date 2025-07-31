@@ -30,7 +30,7 @@ app.use(session({
 
 // Routes
 app.get('/', (req, res) => {
-    res.send('NOT IMPLEMENTED');
+    res.redirect('/login');
 });
 
 app.get('/stats', (req, res) => {
@@ -91,6 +91,10 @@ app.get('/profile', (req, res) => {
         return res.redirect('/login');
     }
     res.render('profile', { user: req.session.user });
+});
+
+app.get('/admin_profile', (req, res) => {
+    res.send('NOT IMPLEMENTED');
 });
 
 app.get('/logout', (req, res) => {

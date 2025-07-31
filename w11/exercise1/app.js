@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
-const User = require('./models/User');
 
 const app = express();
 
@@ -45,6 +44,10 @@ app.post('/login', async (req, res) => {
 });
 
 app.get('/profile', (req, res) => {
+    res.send('NOT IMPLEMENTED');
+});
+
+app.get('/admin_profile', (req, res) => {
     res.send('NOT IMPLEMENTED');
 });
 

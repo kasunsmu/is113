@@ -80,6 +80,7 @@ app.post('/login', async (req, res) => {
             username: user.username,
             role: user.role
         };
+        
         if (user.role === "Admin") {
             return res.redirect('/admin_profile');
         }
